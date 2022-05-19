@@ -27,7 +27,8 @@ var longestPalindrome = function (string) {
         // Find the longest even palendrome
         getLongestPalindrome(i, i);
 
-        // Check if a longer palindrome cannot be found
+        // Check if a longer palindrome cannot be found by stopping the operation
+		// after half of the string has been computed through
         if ((string.length - i) * 2 < longestPal.length) {
             // Break out to avoid unnecessary computation
             break;
