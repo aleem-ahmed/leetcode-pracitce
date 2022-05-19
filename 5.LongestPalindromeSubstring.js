@@ -38,4 +38,5 @@ var longestPalindrome = function (string) {
     return longestPal;
 };
 
-console.log(longestPalindrome('babad'));
+console.log(longestPalindrome('babade'));
+console.log(longestPalindrome('cbbd'));
