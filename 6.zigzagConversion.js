@@ -1,3 +1,7 @@
+/*
+    This important lesson with this problem is to try different arrangements of the
+    letters and the numRows that are passed
+*/
 var convert = function (s, numRows) {
     // Base conditions
     if (s === null || numRows <= 0) { return "" }
@@ -7,26 +11,31 @@ var convert = function (s, numRows) {
     let result = ""
     
     // Step size
-    const step = 2 * numRows - 2
+    const step = numRows * 2 - 2
 
     // Loop for each row
-    for (let i = 0; i < numRows; i++) {
+    for (let r = 0; r < numRows; r++) {
 
         // Loop for each character in the row
-        for (let j = i; j < s.length; j += step) {
-            result += s[j]
+        for (let c = r; c < s.length; c += step) {
+            result += s[c]
+            //console.log(c);
 
-            // Check to see of the value is under the length of the String
-            const underLength = j + step - 2 * i < s.length ? true : false
-
-            if (i != 0 && i != numRows - 1 && !underLength) {
-                result += s[j + step - 2 * i]
+            // 
+            if (
+                r != 0 && // Not first row
+                r != numRows - 1 && // Not Last Row
+                c + step - 2 * r < s.length // Do not exceed string length
+            ) {
+                //console.log(c + step - 2 * r, "*");
+                result += s[c + step - 2 * r]
             }
         }
 
+        //console.log('--');
     }
 
     return result;
 };
 
-console.log(convert('PAYLALISHIRING', 4))
+//console.log(convert('PAYPALISHIRINGPAYPALISHIRINGPAYPALISHIRING', 6))
