@@ -28,7 +28,7 @@ var reverse = function(x) {
 	}
 
 	return parseInt(result)
-};
+}
 
 console.log(reverse(-123))
 console.log(reverse(120))
