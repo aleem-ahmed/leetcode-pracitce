@@ -1,46 +1,39 @@
-var myAtoi = function(string) {
-    const INT_MIN = -Math.pow(2, 31);
-    const INT_MAX = Math.pow(2,31) - 1;
-
-    let sign = 1; 
-    let result = 0;
+var myAtoi = function (str) {
+    // Base condition
+    if (!str) {
+        return 0;
+    }
+    // MAX and MIN values for integers
+    const INT_MAX = 2147483647;
+    const INT_MIN = -2147483648;
+    // Trimmed string
+    str = str.trim();
+    // Counter
     let i = 0;
-        
-    // Skip all spaces
-    while (i < string.length && string[i] == ' ') { 
+    // Flag to indicate if the number is negative
+    const isNegative = str[0] === '-';
+    // Flag to indicate if the number is positive
+    const isPositive = str[0] === '+';
+    if (isNegative) {
+        i++;
+    } else if (isPositive) {
         i++;
     }
-
-    // sign = +1, if it's positive number, otherwise sign = -1. 
-    if (i < string.length && string[i] == '+') {
-        sign = 1;
+    // This will store the converted number
+    let number = 0;
+    // Loop for each numeric character in the string iff numeric characters are leading
+    // characters in the string
+    while (i < str.length && str[i] >= '0' && str[i] <= '9') {
+        number = number * 10 + (str[i] - '0');
         i++;
     }
-	else if (i < string.length && string[i] == '-') {
-        sign = -1;
-        i++;
+    // Give back the sign to the converted number
+    number = isNegative ? -number : number;
+    if (number < INT_MIN) {
+        return INT_MIN;
     }
-
-    // Traverse next digits of string and stop if it is not a digit. 
-    // End of string is also non-digit character.
-    while (i < string.length && string[i] >= '0' && string[i] <= '9') {
-        let digit = string[i] - '0';
-
-        // Check overflow and underflow conditions. 
-        if (
-			(result > Math.floor(INT_MAX / 10)) ||
-			(result == Math.floor(INT_MAX / 10) && digit > INT_MAX % 10)
-		) {     
-            // If integer overflowed return 2^31-1, otherwise if underflowed return -2^31.    
-            return sign == 1 ? INT_MAX : INT_MIN;
-        }
-
-        // Append current digit to the result.
-        result = 10 * result + digit;
-        i++;
+    if (number > INT_MAX) {
+        return INT_MAX;
     }
-
-    // We have formed a valid number without any overflow/underflow.
-    // Return it after multiplying it with its sign.
-    return sign * result;
+    return number;
 };
