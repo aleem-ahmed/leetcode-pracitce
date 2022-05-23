@@ -1,30 +1,31 @@
 var myAtoi = function(input) {
     let sign = 1; 
     let result = 0;
-    let index = 0;
+    let i = 0;
     let n = input.length;
     
     let INT_MAX = Math.pow(2,31) - 1;
     let INT_MIN = -Math.pow(2, 31);
         
     // Discard all spaces from the beginning of the input string.
-    while (index < n && input[index] == ' ') { 
-        index++; 
+    while (i < n && input[i] == ' ') { 
+        i++; 
     }
 
     // sign = +1, if it's positive number, otherwise sign = -1. 
-    if (index < n && input[index] == '+') {
+    if (i < n && input[i] == '+') {
         sign = 1;
-        index++;
-    } else if (index < n && input[index] == '-') {
+        i++;
+    }
+	else if (i < n && input[i] == '-') {
         sign = -1;
-        index++;
+        i++;
     }
 
     // Traverse next digits of input and stop if it is not a digit. 
     // End of string is also non-digit character.
-    while (index < n && input[index] >= '0' && input[index] <= '9') {
-        let digit = input[index] - '0';
+    while (i < n && input[i] >= '0' && input[i] <= '9') {
+        let digit = input[i] - '0';
 
         // Check overflow and underflow conditions. 
         if ((result > Math.floor(INT_MAX / 10)) || 
@@ -35,7 +36,7 @@ var myAtoi = function(input) {
 
         // Append current digit to the result.
         result = 10 * result + digit;
-        index++;
+        i++;
     }
 
     // We have formed a valid number without any overflow/underflow.
