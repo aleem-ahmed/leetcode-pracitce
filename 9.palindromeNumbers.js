@@ -5,10 +5,9 @@ function isPalindrome(x) {
     let ii = x.length - 1;
 
     while (i < ii) {
-		console.log(i,ii, x.charAt(i), x.charAt(ii));
-        if(x.charAt(i) != x.charAt(ii)) return false;
-		i++
-		ii--
+    if(x.charAt(i) != x.charAt(ii)) return false;
+      i++
+      ii--
     }
 
     return true;
