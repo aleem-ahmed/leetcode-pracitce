@@ -4,28 +4,41 @@
  * @return {number}
 */
 var maximumWhiteTiles = function (tiles, carpetLen) {
-    tiles = tiles.sort(function (a, b) { return a[0] - b[0] })
-
+    // [INIT]
     let max = 0
     let cnt = 0
-    let l = 0
-    
-    for (let i = 0; i < tiles.length; i++) {
-        const tile = tiles[i]
+    let ii = 0
 
-        cnt = cnt + tile[1] - tile[0] + 1
+    // Sort the array by number
+    tiles = tiles.sort(function (a, b) { return a[0] - b[0] })
+    
+    // for every tile..
+    for (let i = 0; i < tiles.length; i++) {
+        // 
+        console.log(
+            "[", tiles[i][0], tiles[i][1], "]",
+            "width", tiles[i][1] - tiles[i][0] + 1,
+            "cnt", cnt + tiles[i][1] - tiles[i][0] + 1
+        )
+
+        // Add the width of each tile togeather..
+        cnt = cnt + tiles[i][1] - tiles[i][0] + 1
         
-        let len = 0
+        // For each tile
+        let tileGrouplength = 0
         while (
-            l < tiles.length &&
-            (len = tiles[i][1] - tiles[l][0] + 1) > carpetLen
+            ii < tiles.length &&
+            (tileGrouplength = tiles[i][1] - tiles[ii][0] + 1) > carpetLen
         ) {
             // keep removing tiles from left side
-            max = Math.max(max, cnt - len + carpetLen)
+            max = Math.max(
+                max,
+                cnt - tileGrouplength + carpetLen
+            )
 
-            cnt -= tiles[l][1] - tiles[l][0] + 1
+            cnt -= tiles[ii][1] - tiles[ii][0] + 1
 
-            l++
+            ii++
         }
 
         max = Math.max(max, cnt)
