@@ -46,7 +46,9 @@ let numIslands = (grid) => {
 			ii < grid[i].length &&
 			grid[i][ii] === '1'
 		) {
+			// Set the position to 0
 			grid[i][ii] = '0';
+
 			dfs(i + 1, ii); // top
 			dfs(i, ii + 1); // right
 			dfs(i - 1, ii); // bottom
@@ -65,3 +67,11 @@ let numIslands = (grid) => {
 
 	return counter;
 };
+
+/**
+ * The way that this problem is tackled is by using a depth first search to see if 
+ * each position is 1. If it is then it sets all the surrounding siginifcant 1's to 
+ * 0's. As the 2D for loops continue any irrelevant 1's are no longer disruptive to 
+ * the search proccess.
+ * - Aleem 
+*/
