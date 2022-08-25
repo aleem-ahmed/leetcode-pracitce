@@ -71,7 +71,7 @@ let numIslands = (grid) => {
 /**
  * The way that this problem is tackled is by using a depth first search to see if 
  * each position is 1. If it is then it sets all the surrounding siginifcant 1's to 
- * 0's. As the 2D for loops continue any irrelevant 1's are no longer disruptive to 
+ * 0's. As the 2D for-loop continue any irrelevant 1's are no longer disruptive to 
  * the search proccess.
  * - Aleem 
 */
